@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fde44f7fe98f4bd2a6f4aa21b1b7d231" Name="Diagram1">
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Cleaning_Schedule" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Guest_Services" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Guests" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.HotelRooms" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Integrations" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Payments" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Reservation" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.RoomAccess" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Rooms" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Services" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Statistics_hotel" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shkutan_MaximModel.Users" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="Shkutan_MaximModel.FK_Cleaning_Schedule_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="Shkutan_MaximModel.FK_Cleaning_Schedule_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Shkutan_MaximModel.FK_Reservation_Guests" ManuallyRouted="false" />
+        <AssociationConnector Association="Shkutan_MaximModel.FK_Reservation_Rooms" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

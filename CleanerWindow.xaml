@@ -1,0 +1,28 @@
+﻿<Window x:Class="Project_tipa.CleanerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_tipa"
+        mc:Ignorable="d"
+        Title="Окно уборщика" Height="500" Width="800">
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Назначенные комнаты" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+            <DataGrid x:Name="AssignedRoomsGrid" AutoGenerateColumns="False" IsReadOnly="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер комнаты" Binding="{Binding RoomNumber}" Width="120"/>
+                    <DataGridTextColumn Header="Дата уборки" Binding="{Binding CleaningDate}" Width="120"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="120"/>
+                    <DataGridTemplateColumn Header="Изменить статус" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Завершить" Click="ChangeStatus_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

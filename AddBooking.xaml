@@ -1,0 +1,86 @@
+﻿<Window x:Class="Project_tipa.AddBooking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_tipa"
+        mc:Ignorable="d"
+        Title="Добавление бронирования" Height="650" Width="400">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFDA89" Offset="0.0"/>
+            <GradientStop Color="#FFC24A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="20">
+        <StackPanel>
+            <GroupBox Header="Информация о госте" Margin="0,0,0,10">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Имя"/>
+                    <TextBox x:Name="txtFirstName" 
+                            Height="30" 
+                            Margin="0,5,0,10"
+                            Background="#BFAA98"/>
+
+                    <TextBlock Text="Фамилия"/>
+                    <TextBox x:Name="txtLastName" 
+                            Height="30" 
+                            Margin="0,5,0,10"
+                            Background="#BFAA98"/>
+
+                    <TextBlock Text="Email"/>
+                    <TextBox x:Name="txtEmail" 
+                            Height="30" 
+                            Margin="0,5,0,10"
+                            Background="#BFAA98"/>
+
+                    <TextBlock Text="Номер документа"/>
+                    <TextBox x:Name="txtDocumentNumber" 
+                            Height="30" 
+                            Margin="0,5,0,10"
+                            Background="#BFAA98"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Информация о бронировании" Margin="0,0,0,10">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Номер комнаты"/>
+                    <ComboBox x:Name="cmbRoomNumber" 
+                             Height="30" 
+                             Margin="0,5,0,10"
+                             Background="#BFAA98">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding DisplayNumber}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Category}" />
+                                    <TextBlock Text=" (" />
+                                    <TextBlock Text="{Binding Price, StringFormat={}{0:C}}" />
+                                    <TextBlock Text=")" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Дата заезда"/>
+                    <DatePicker x:Name="dpCheckIn" 
+                              Height="30" 
+                              Margin="0,5,0,10"
+                              SelectedDateChanged="dpCheckIn_SelectedDateChanged"/>
+
+                    <TextBlock Text="Дата выезда"/>
+                    <DatePicker x:Name="dpCheckOut" 
+                              Height="30" 
+                              Margin="0,5,0,10"/>
+                </StackPanel>
+            </GroupBox>
+
+            <Button Content="Добавить бронирование"
+                    Height="35"
+                    Background="#BFAA98"
+                    Click="AddBooking_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

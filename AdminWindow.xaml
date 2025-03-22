@@ -1,0 +1,57 @@
+﻿<Window x:Class="Project_tipa.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_tipa"
+        mc:Ignorable="d"
+        Title="Панель администратора" MinHeight="450" MinWidth="800"
+        SizeToContent="WidthAndHeight" ResizeMode="CanResize">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFDA89" Offset="0.0"/>
+            <GradientStop Color="#FFC24A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="20">
+        <DataGrid x:Name="Users"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="False"
+                  Margin="10"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding lastname}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding firstname}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding role}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding username}"/>
+                <DataGridTextColumn Header="Заблокирован" Binding="{Binding IsLocked}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 20">
+            <Button Content="Добавить пользователя"
+                    Width="160"
+                    Height="30"
+                    Background="#BFAA98"
+                    Foreground="#444"
+                    FontWeight="Bold"
+                    Click="AddUser_Click"/>
+            <Button Content="Разблокировать"
+                    Width="160"
+                    Height="30"
+                    Background="#BFAA98"
+                    Foreground="#444"
+                    FontWeight="Bold"
+                    Margin="5" Click="UnlockUser_Click"/>
+            <Button Content="Обновить"
+                Width="160"
+                Height="30"
+                Background="#BFAA98"
+                Foreground="#444"
+                FontWeight="Bold"
+                Margin="5" Click="Update_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

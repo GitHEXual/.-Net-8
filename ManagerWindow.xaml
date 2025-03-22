@@ -1,0 +1,178 @@
+﻿<Window x:Class="Project_tipa.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_tipa"
+        mc:Ignorable="d"
+        Title="Панель управления отелем" Height="600" Width="1000">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFDA89" Offset="0.0"/>
+            <GradientStop Color="#FFC24A" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="20">
+        <TabControl Background="Transparent">
+            <!-- Вкладка Бронирования -->
+            <TabItem Header="Бронирования">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Добавить бронирование" 
+                                Width="160" Height="30" 
+                                Background="#BFAA98" 
+                                Margin="0,0,10,0"
+                                Click="AddBooking_Click"/>
+                        <Button Content="Обновить" 
+                                Width="100" Height="30" 
+                                Background="#BFAA98" Click="UpdateButton_Click"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="BookingsGrid" 
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding GuestName}"/>
+                            <DataGridTextColumn Header="Дата заезда" Binding="{Binding CheckInDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            <DataGridTextColumn Header="Дата выезда" Binding="{Binding CheckOutDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding RoomId}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Header="Паспорт" Binding="{Binding DocumentNumber}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Управление клинингом -->
+            <TabItem Header="Управление клинингом">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="CleaningGrid" 
+                              Grid.Column="0"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              Margin="0,0,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер комнаты" Binding="{Binding RoomNumber}"/>
+                            <DataGridTextColumn Header="Дата уборки" Binding="{Binding CleaningDate}"/>
+                            <DataGridTextColumn Header="Сотрудник" Binding="{Binding StaffName}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Column="1">
+                        <GroupBox Header="Назначение уборки" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="Номер комнаты"/>
+                                <ComboBox x:Name="RoomNumberCombo" Margin="0,5,0,10">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayNumber}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <TextBlock Text="Дата уборки"/>
+                                <DatePicker x:Name="CleaningDate" Margin="0,5,0,10"/>
+
+                                <TextBlock Text="Сотрудник"/>
+                                <ComboBox x:Name="StaffCombo" Margin="0,5,0,10">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding FullName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <Button Content="Назначить уборку" 
+                                        Height="30" 
+                                        Background="#BFAA98"
+                                        Click="AssignCleaning_Click"
+                                        />
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка Номерной фонд -->
+            <TabItem Header="Номерной фонд">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Статистика -->
+                    <GroupBox Header="Статистика загрузки номеров" Grid.Row="0" Margin="0,0,0,10">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="5">
+                                <TextBlock Text="Всего номеров:" FontWeight="Bold"/>
+                                <TextBlock x:Name="txtTotalRooms" Text="0"/>
+                                <TextBlock Text="Занято номеров:" FontWeight="Bold" Margin="0,10,0,0"/>
+                                <TextBlock x:Name="txtOccupiedRooms" Text="0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Margin="5">
+                                <TextBlock Text="Свободно номеров:" FontWeight="Bold"/>
+                                <TextBlock x:Name="txtFreeRooms" Text="0"/>
+                                <TextBlock Text="Процент загрузки:" FontWeight="Bold" Margin="0,10,0,0"/>
+                                <TextBlock x:Name="txtOccupancyRate" Text="0%"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Margin="5">
+                                <TextBlock Text="На уборке:" FontWeight="Bold"/>
+                                <TextBlock x:Name="txtCleaningRooms" Text="0"/>
+                                <TextBlock Text="Требуют ремонта:" FontWeight="Bold" Margin="0,10,0,0"/>
+                                <TextBlock x:Name="txtMaintenanceRooms" Text="0"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Кнопки управления -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Обновить данные" 
+                                Width="160" Height="30" 
+                                Background="#BFAA98" 
+                                Margin="0,0,10,0"
+                                Click="RefreshRooms_Click"/>
+                    </StackPanel>
+
+                    <!-- Таблица номеров -->
+                    <DataGrid x:Name="RoomsGrid" 
+                              Grid.Row="2"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Этаж" Binding="{Binding floor}" Width="80"/>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding number}" Width="80"/>
+                            <DataGridTextColumn Header="Категория" Binding="{Binding category}" Width="200"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding status}" Width="100"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding price, StringFormat={}{0:C}}" Width="100"/>
+                            <DataGridTextColumn Header="Текущий гость" Binding="{Binding CurrentGuest}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
